@@ -1,8 +1,11 @@
 const startQuizButton = document.getElementById("start-quiz");
-let timer = document.getElementById("timer");
 const timerButton = document.getElementById("display-start-quiz");
 const backGroundSize = document.getElementById("container-quiz");
+const nextQuestion = document.querySelector("#next-question");
+
+let timer = document.getElementById("timer");
 let temps = 10;
+let nbQuestion = 0;
 
 function time() {
     timer.innerHTML = "Time Left : " + (temps < 10 ? "" : "") + temps;
@@ -10,10 +13,19 @@ function time() {
         temps--;
     }
 }
+
 function startTimer() {
+    /**
+     * setInterval prend 2 arguments 
+     * - la function `time`
+     * - le temps (en millisecond)
+     */
     setInterval(time, 1000);
 }    
-document.querySelector("#next-question").addEventListener("click", function() {
+
+nextQuestion.addEventListener("click", function() {
+    nbQuestion++;
+    afficherQuestion(nbQuestion)
     temps = 10;
 });
 
@@ -26,12 +38,13 @@ function startQuiz() {
     // backGroundSize.style.height = "39rem";
 
     startTimer();
-    afficherQuestion(0);
+    afficherQuestion(nbQuestion);
 }
+
 startQuizButton.addEventListener("click", startQuiz);
 
 const questions = [{
-    id : 0,
+    id : 1,
     q: "Quelle balise HTML est utilisée pour créer une liste non ordonée ?",
     a: [
         { text: "<ul>", correct: true },
@@ -39,39 +52,70 @@ const questions = [{
         { text: "<ol>", correct: false },
         { text: "<lu>", correct: false },
     ]
+}, {
+    id : 2,
+    q: "Quelle est la best team ?",
+    a: [
+        { text: "CrewDragon", correct: true },
+        { text: "1", correct: false },
+        { text: "2", correct: false },
+        { text: "3", correct: false },
+    ]
 }];
 
 
-let optionQuestion = document.getElementById("question");
-let option1 = document.getElementById("op1");
-let option2 = document.getElementById("op2");
-let option3 = document.getElementById("op3");
-let option4 = document.getElementById("op4");
+const optionQuestion = document.getElementById("question");
+const option1 = document.getElementById("op1");
+const option2 = document.getElementById("op2");
+const option3 = document.getElementById("op3");
+const option4 = document.getElementById("op4");
 
 function afficherQuestion(idQuestion) {
     const realAnswer = questions[idQuestion];
     optionQuestion.innerHTML = realAnswer.q;
-        
+    
+    /** option1.textContent remplace l'HTML par la valeur donnée, ici realAnswer.a[0].text; */
     option1.textContent = realAnswer.a[0].text;
+    /** option1.value ajouter sur l'HTML la valeur donnée, ici realAnswer.a[0].text; */
+    option1.value =  realAnswer.a[0].text;
     option2.textContent = realAnswer.a[1].text;
+    option2.value =  realAnswer.a[1].text;
     option3.textContent = realAnswer.a[2].text;
+    option3.value =  realAnswer.a[2].text;
     option4.textContent = realAnswer.a[3].text;
+    option4.value =  realAnswer.a[3].text;
 }
-// afficherQuestion(0);
+
 
 const answersButton = document.querySelectorAll(".answer-btn");
-function answerColor (idQuestion) {
-    const realAnswer2 = questions[idQuestion];
-    
-    const true0 = realAnswer2.a[0].correct;
-    const true1 = realAnswer2.a[1].correct;
-    const true2 = realAnswer2.a[2].correct;
-    const true3 = realAnswer2.a[3].correct;
 
-    if (true0 === questions) {
-        answersButton.style.backgroundColor ="green";
-    }
-    answersButton.addEventListener("click", answerColor);
+for(const answerButton of answersButton){
+    answerButton.addEventListener("click", (event) => {
+        answerUser(nbQuestion, event.target.value)
+    })
+}
+
+function answerUser(idQuestion, response) {
+
+    /**
+     * Comparer la réponse de l'utilisateur (response) avec la vrai réponse du quiz
+     */
+
+    const correctReponse = questions.filter(question => question.a.includes(response => console.log(response)))
+
+    console.log(correctReponse)
+
+    // const realAnswer2 = questions[idQuestion];
+    
+    // const true0 = realAnswer2.a[0].correct;
+    // const true1 = realAnswer2.a[1].correct;
+    // const true2 = realAnswer2.a[2].correct;
+    // const true3 = realAnswer2.a[3].correct;
+
+    // if (true0 === questions) {
+    //     answersButton.style.backgroundColor ="green";
+    // }
+    // answersButton.addEventListener("click", answerColor);
 }
 
 
