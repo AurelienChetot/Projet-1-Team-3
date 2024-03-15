@@ -143,10 +143,9 @@ h2 {
     border: 3px solid black;
 }
 
-.answer-btn:active {
-    /* background: linear-gradient(58deg, rgba(246,87,148,1) 32%, rgba(163,6,182,1) 77%); */
+/* .answer-btn:active {
     background: linear-gradient(58deg, rgb(87, 201, 246) 32%, rgb(118, 20, 247) 77%);
-}
+} */
 .answer-btn:hover {
     box-shadow: 5px 5px 16px 4px #000000;
 }
