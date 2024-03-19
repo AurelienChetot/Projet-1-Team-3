@@ -1,0 +1,17 @@
+{
+  "name": "projet-1-team-3",
+  "version": "1.0.0",
+  "description": "Projet 1 QUIZ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "validate":   "html-validator docs index.html",
+    "one-folder": "html-validator docs",
+    "all":        "html-validator --quiet"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+  "w3c-html-validator": "^1.7.0"
+  }
+}
