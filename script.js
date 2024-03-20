@@ -4,6 +4,10 @@ const backGroundSize = document.getElementById("container-quiz");
 const nextQuestion = document.querySelector("#next-question");
 const score = document.getElementById("score");
 const numberQuestion = document.getElementById("number-question");
+const button1 = document.getElementById("op0");
+const button2 = document.getElementById("op1");
+const button3 = document.getElementById("op2");
+const button4 = document.getElementById("op3");
 
 let timer = document.getElementById("timer");
 let temps = 10;
@@ -14,6 +18,18 @@ function time() {
     timer.innerHTML = "Time Left : " + (temps < 10 ? "" : "") + temps;
     if (temps > 0) {
         temps--;
+    } else { 
+        nbQuestion++;
+        numberQuestion.innerHTML = "Question " + (nbQuestion ? "" : "") + questions[1].id++ + "/10";
+        afficherQuestion(nbQuestion);
+        temps = 10;
+
+        /* Pour remplacer la condition en haut (else) afin de verrouiller les boutons si le timer arrive à 0*/
+
+        // button1.disabled = true;
+        // button2.disabled = true;
+        // button3.disabled = true;
+        // button4.disabled = true;
     }
 }
 
@@ -23,16 +39,14 @@ function startTimer() {
      * - la function `time`
      * - le temps (en millisecond)
      */
-    setInterval(time, 1000);
+    intervalId = setInterval(time, 1000);
 }    
 /* document.getElementById("questions").innerHTML = nbQuestion + 1; */
 nextQuestion.addEventListener("click", function() {
-
     if (nbQuestion < 9) {
         nbQuestion++;
         numberQuestion.innerHTML = "Question " + (nbQuestion ? "" : "") + questions[1].id++ + "/10";
     }
-    // console.log(nbQuestion)
     afficherQuestion(nbQuestion)
     temps = 10;
 });
@@ -129,3 +143,49 @@ function answerUser(idQuestion, response) {
         console.log("Mauvaise réponse !");
     }
 }
+
+
+/*Permet de désactiver les autres boutons que celui cliqué ! */
+button1.addEventListener("click", () => {
+    button1.disabled = true;
+    button2.disabled = true;
+    button3.disabled = true;
+    button4.disabled = true;
+/*intervalId stock setInterval pour rendre utilisable/fonctionnel clearInterval */
+    clearInterval(intervalId);
+    
+});
+
+button2.addEventListener("click", () => {
+    button1.disabled = true;
+    button2.disabled = true;
+    button3.disabled = true;
+    button4.disabled = true;
+    clearInterval(intervalId);
+});
+
+button3.addEventListener("click", () => {
+    button1.disabled = true;
+    button2.disabled = true;
+    button3.disabled = true;
+    button4.disabled = true;
+    clearInterval(intervalId);
+});
+
+button4.addEventListener("click", () => {
+    button1.disabled = true;
+    button2.disabled = true;
+    button3.disabled = true;
+    button4.disabled = true;
+    clearInterval(intervalId);
+});
+
+
+
+nextQuestion.addEventListener("click", () => {
+    button1.disabled = false;
+    button2.disabled = false;
+    button3.disabled = false;
+    button4.disabled = false;
+    startTimer();
+});

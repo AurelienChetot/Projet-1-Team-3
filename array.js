@@ -23,7 +23,7 @@ const questions = [{
         { text: "Antho", correct: false },
         { text: "Brendan Eich", correct: true },
         { text: "Bryan Eich", correct: false },
-        { text: "La Wild Code School", correct: false },
+        { text: "Brandon Eich", correct: false },
     ]
 }, {
     id : 4,
@@ -36,30 +36,30 @@ const questions = [{
     ]
 }, {
     id : 5,
-    q: "Quelle balise HTML est utilisée pour créer une liste non ordonée ?",
+    q: "Qui est le plus impoli ?",
     a: [
-        { text: "<ul>", correct: true },
-        { text: "<li>", correct: false },
-        { text: "<ol>", correct: false },
-        { text: "<lu>", correct: false },
+        { text: "Faaab", correct: true },
+        { text: "Vincent", correct: false },
+        { text: "Kelly", correct: false },
+        { text: "Nicolas", correct: false },
     ]
 },  {
     id : 6,
-    q: "Quelle balise HTML est utilisée pour créer une liste non ordonée ?",
+    q: "Qui a fondé GIT?",
     a: [
-        { text: "<ul>", correct: true },
-        { text: "<li>", correct: false },
-        { text: "<ol>", correct: false },
-        { text: "<lu>", correct: false },
+        { text: "Linus Torvalds", correct: true },
+        { text: "Brad Pitt", correct: false },
+        { text: "linux Trovalds", correct: false },
+        { text: "Bradley", correct: false },
     ]
 },  {
     id : 7,
-    q: "Quelle balise HTML est utilisée pour créer une liste non ordonée ?",
+    q: "c'est quoi UX ?",
     a: [
-        { text: "<ul>", correct: true },
-        { text: "<li>", correct: false },
-        { text: "<ol>", correct: false },
-        { text: "<lu>", correct: false },
+        { text: "User experience", correct: true },
+        { text: "User Interface", correct: false },
+        { text: "User Desktop", correct: false },
+        { text: "User init", correct: false },
     ]
 },  {
     id : 8,
@@ -72,21 +72,21 @@ const questions = [{
     ]
 },  {
     id : 9,
-    q: "Quelle balise HTML est utilisée pour créer une liste non ordonée ?",
+    q: "Qui a fondé Node.js",
     a: [
-        { text: "<ul>", correct: true },
-        { text: "<li>", correct: false },
-        { text: "<ol>", correct: false },
-        { text: "<lu>", correct: false },
+        { text: "Ryan Dahl", correct: true },
+        { text: "Fanny", correct: false },
+        { text: "Simon", correct: false },
+        { text: "David", correct: false },
     ]
 }, {
     id : 10,
-    q: "Quelle balise HTML est utilisée pour créer une liste non ordonée ?",
+    q: "Qui est le GOAT des formateurs  ?",
     a: [
-        { text: "<ul>", correct: true },
-        { text: "<li>", correct: false },
-        { text: "<ol>", correct: false },
-        { text: "<lu>", correct: false },
+        { text: "Antho", correct: true },
+        { text: "Benoit", correct: false },
+        { text: "Ayoub", correct: false },
+        { text: "Yavuz", correct: false },
     ]
 }, 
 ]; 
