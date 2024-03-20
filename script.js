@@ -74,8 +74,11 @@ const questions = [{
     id : 4,
     q: "Que veut dire JSON",
     a: [
-        { text: "JavaScript Object Natation", correct: false },
-        { text: "JavaSuper Object Notation", correct: false },
+        { 
+            text: "JavaScript Object Natation", 
+            correct: false },
+        { text: "JavaSuper Object Notation", 
+            correct: false },
         { text: "JavaSans Object Notation", correct: false },
         { text: "JavaScript Object Notation", correct: true },
     ]
@@ -93,53 +96,72 @@ const questions = [{
 
 
 const optionQuestion = document.getElementById("question");
-const option1 = document.getElementById("op1");
-const option2 = document.getElementById("op2");
-const option3 = document.getElementById("op3");
-const option4 = document.getElementById("op4");
+
 
 function afficherQuestion(idQuestion) {
-    const realAnswer = questions[idQuestion];
-    optionQuestion.innerHTML = realAnswer.q;
-    
-    /** option1.textContent remplace l'HTML par la valeur donnée, ici realAnswer.a[0].text; */
-    option1.textContent = realAnswer.a[0].text;
-    /** option1.value ajouter sur l'HTML la valeur donnée, ici realAnswer.a[0].text; */
-    option1.value =  realAnswer.a[0].text;
-    option2.textContent = realAnswer.a[1].text;
-    option2.value =  realAnswer.a[1].text;
-    option3.textContent = realAnswer.a[2].text;
-    option3.value =  realAnswer.a[2].text;
-    option4.textContent = realAnswer.a[3].text;
-    option4.value =  realAnswer.a[3].text;
-}
+    const blockQuestion = questions[idQuestion];
+    optionQuestion.innerHTML = blockQuestion.q;
 
+    // On boucle chaque élement du tableau "a" pour rajouter le texte ainsi que la clé du tableau via la propriété "data-id".
+    blockQuestion.a.forEach(function(element, index) {
+        // index = 0 | element = "{ text: "HyperText Mega Language", correct: false }"
+        // index = 1 | element = "{ text: "Hyper Text Modify Language", correct: false }"
+        // index = 2 | element = "{ text: "Hyper Text Mega Language", correct: true }"
+        // index = 3 | element = "{ text: "Hyper Text Markup Language", correct: true }"
+        const button = document.getElementById("op" + index);
+
+        // On enlève tout les CSS de l'attribut "style" de chaque bouton.
+        button.removeAttribute('style');
+
+        button.textContent = blockQuestion.a[index].text;
+        button.dataset.id = index;
+    });
+
+    // Chaque question contient un tableau de 4 réponse, par conséquent
+    // nous faisont une boucle for sur ce tableau et nous récupérons l'index de chaque élement via la variable "i".
+    /*for(let i = 0; i < 4; i++) {
+        const button = document.getElementById("op" + i);
+        console.log(i);
+
+        button.textContent = blockQuestion.a[i].text;
+        button.dataset.id = i;
+    }*/
+}
 
 const answersButton = document.querySelectorAll(".answer-btn");
 
 for(const answerButton of answersButton){
     answerButton.addEventListener("click", (event) => {
-        answerUser(nbQuestion, event.target.value)
+        console.log(event.target);
+        answerUser(nbQuestion, event.target);
     })
 }
 
+
 function answerUser(idQuestion, response) {
+    console.log(idQuestion, response);
 
-    /**
-     * Comparer la réponse de l'utilisateur (response) avec la vrai réponse du quiz
-    //  */
+    // On récupère l'ID de la réponse, cet ID correspond à l'entrée dans le tableau "a"
+    const dataId = response.dataset.id;
 
-const correctReponse = questions.filter(question => question.a.includes(response => console.log(response)));
+    // On va récupérer la ligne correspondante à la bonne réponse dans le tableau du "a"
+    /*
+        a: [
+        dataId -> 0: { text: "HyperText Mega Language", correct: false },
+            1: { text: "Hyper Text Modify Language", correct: false },
+            2: { text: "Hyper Text Mega Language", correct: false },
+            3: { text: "Hyper Text Markup Language", correct: true },
+        ]
+    */
+    const answer = questions[idQuestion].a[dataId];
 
-if (correctReponse === questions[a].value) {
-    console.log(`Bonne réponse !`);
-} else {
-    console.log("Mauvaise réponse !");
+    // On vérifie si la réponse est la bonne réponse ou non.
+    if (answer.correct) {
+        console.log(`Bonne réponse !`);
+        response.style.background = "#6be585";
+    } else {
+        response.style.background = "#c94b4b";
+        console.log("Mauvaise réponse !");
+    }
+
 }
-
-console.log(correctReponse)
-
-}
-
-
-
