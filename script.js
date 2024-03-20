@@ -2,10 +2,13 @@ const startQuizButton = document.getElementById("start-quiz");
 const timerButton = document.getElementById("display-start-quiz");
 const backGroundSize = document.getElementById("container-quiz");
 const nextQuestion = document.querySelector("#next-question");
+const score = document.getElementById("score");
+const numberQuestion = document.getElementById("number-question");
 
 let timer = document.getElementById("timer");
 let temps = 10;
 let nbQuestion = 0;
+let currentScore = 0;
 
 function time() {
     timer.innerHTML = "Time Left : " + (temps < 10 ? "" : "") + temps;
@@ -24,12 +27,15 @@ function startTimer() {
 }    
 
 nextQuestion.addEventListener("click", function() {
-    nbQuestion++;
+    nbQuestion++ ;
+    numberQuestion.innerHTML = "Question " + (nbQuestion ? "" : "") + nbQuestion + "/10";
+    console.log(nbQuestion)
     afficherQuestion(nbQuestion)
     temps = 10;
 });
 
 function startQuiz() {
+    // numberQuestion.innerHTML = "Question " + (nbQuestion < 10 ? "" : "") + nbQuestion + "/10";
     startQuizButton.style.display = "none";    
     timerButton.style.justifyContent = "center";
     timerButton.style.paddingLeft = "0px";
@@ -74,11 +80,8 @@ const questions = [{
     id : 4,
     q: "Que veut dire JSON",
     a: [
-        { 
-            text: "JavaScript Object Natation", 
-            correct: false },
-        { text: "JavaSuper Object Notation", 
-            correct: false },
+        { text: "JavaScript Object Natation", correct: false },
+        { text: "JavaSuper Object Notation", correct: false },
         { text: "JavaSans Object Notation", correct: false },
         { text: "JavaScript Object Notation", correct: true },
     ]
@@ -143,6 +146,7 @@ function answerUser(idQuestion, response) {
 
     // On récupère l'ID de la réponse, cet ID correspond à l'entrée dans le tableau "a"
     const dataId = response.dataset.id;
+    const score = document.getElementById("score");
 
     // On va récupérer la ligne correspondante à la bonne réponse dans le tableau du "a"
     /*
@@ -159,6 +163,8 @@ function answerUser(idQuestion, response) {
     if (answer.correct) {
         console.log(`Bonne réponse !`);
         response.style.background = "#6be585";
+        currentScore++;
+        score.innerHTML = "Score " + (currentScore < 10 ? "" : "") + currentScore + "/10";
     } else {
         response.style.background = "#c94b4b";
         console.log("Mauvaise réponse !");

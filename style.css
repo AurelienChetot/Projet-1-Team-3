@@ -324,6 +324,10 @@ footer {
 @media screen and (max-width: 452px) {
 
     .quiz-container {
-        height: 40rem;
+        height: 42rem;
+    }
+
+    .answer-btn{
+        height: 4rem;
     }
 }
