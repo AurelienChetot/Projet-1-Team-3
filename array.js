@@ -130,7 +130,7 @@ const questions = [{
     a: [
         { text: "Qui a fondé JavaScript ?", correct: false },
         { text: "Qui a fondé GIT ?", correct: false },
-        { text: "Que signifie HTML", correct: true },
+        { text: "Que signifie HTML ?", correct: true },
         { text: "Que veut dire JSON ?", correct: false }
     ]
 }

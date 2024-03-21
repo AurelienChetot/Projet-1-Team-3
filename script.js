@@ -1,7 +1,7 @@
 const startQuizButton = document.getElementById("start-quiz");
 const timerButton = document.getElementById("display-start-quiz");
 const backGroundSize = document.getElementById("container-quiz");
-const nextQuestion = document.querySelector("#next-question");
+const nextQuestion = document.getElementById("next-question");
 const score = document.getElementById("score");
 const numberQuestion = document.getElementById("number-question");
 const button1 = document.getElementById("op0");
@@ -19,14 +19,15 @@ let currentScore = 0;
 
 function time() {
     timer.innerHTML = "Time Left : " + (temps < 10 ? "" : "") + temps;
+
     if (temps > 0) {
         temps--;
-    } else { 
+    } else {        
         if (nbQuestion < 14) { 
-        nbQuestion++;
-        numberQuestion.innerHTML = "Question " + (nbQuestion ? "" : "") + questions[1].id++ + "/15";
-        afficherQuestion(nbQuestion);
-        temps = 10;
+            nbQuestion++;           
+            numberQuestion.innerHTML = "Question " + (nbQuestion ? "" : "") + questions[1].id++ + "/15";
+            afficherQuestion(nbQuestion);
+            temps = 10;
         } 
         /* Pour remplacer la condition en haut (else) afin de verrouiller les boutons si le timer arrive à 0*/
 
@@ -36,7 +37,7 @@ function time() {
         // button4.disabled = true;
     }
 }
-
+nextQuestion.disabled = true;
 function startTimer() {
     /**
      * setInterval prend 2 arguments 
@@ -64,6 +65,7 @@ function startQuiz() {
     timerButton.style.paddingLeft = "0px";
     timer.style.width = "250px";
     timer.style.fontSize = "1.9rem";
+    nextQuestion.disabled = false;
 
     startTimer();
     afficherQuestion(nbQuestion);
@@ -189,4 +191,9 @@ nextQuestion.addEventListener("click", () => {
     button4.disabled = false;
     clearInterval(intervalId);
     startTimer();
+    
+    // Si le nombre de question == 14 (0-14) alors on désactive le bouton de la question suivante
+    if (nbQuestion === 14) {
+        nextQuestion.disabled = true;
+    }
 });
