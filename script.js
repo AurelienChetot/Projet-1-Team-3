@@ -8,6 +8,9 @@ const button1 = document.getElementById("op0");
 const button2 = document.getElementById("op1");
 const button3 = document.getElementById("op2");
 const button4 = document.getElementById("op3");
+const indication = document.getElementById("indication");
+const optionQuestion = document.getElementById("question");
+const answersButton = document.querySelectorAll(".answer-btn");
 
 let timer = document.getElementById("timer");
 let temps = 10;
@@ -19,11 +22,12 @@ function time() {
     if (temps > 0) {
         temps--;
     } else { 
+        if (nbQuestion < 14) { 
         nbQuestion++;
-        numberQuestion.innerHTML = "Question " + (nbQuestion ? "" : "") + questions[1].id++ + "/10";
+        numberQuestion.innerHTML = "Question " + (nbQuestion ? "" : "") + questions[1].id++ + "/15";
         afficherQuestion(nbQuestion);
         temps = 10;
-
+        } 
         /* Pour remplacer la condition en haut (else) afin de verrouiller les boutons si le timer arrive à 0*/
 
         // button1.disabled = true;
@@ -43,9 +47,9 @@ function startTimer() {
 }    
 /* document.getElementById("questions").innerHTML = nbQuestion + 1; */
 nextQuestion.addEventListener("click", function() {
-    if (nbQuestion < 9) {
+    if (nbQuestion < 14) {
         nbQuestion++;
-        numberQuestion.innerHTML = "Question " + (nbQuestion ? "" : "") + questions[1].id++ + "/10";
+        numberQuestion.innerHTML = "Question " + (nbQuestion ? "" : "") + questions[1].id++ + "/15";
     }
     afficherQuestion(nbQuestion)
     temps = 10;
@@ -53,23 +57,19 @@ nextQuestion.addEventListener("click", function() {
 console.log(questions[0].id)
 
 function startQuiz() {
-    //nbQuestion;
-    numberQuestion.innerHTML = "Question " + (nbQuestion ? "" : "") + questions[0].id++ + "/10";
+    numberQuestion.innerHTML = "Question " + (nbQuestion ? "" : "") + questions[0].id++ + "/15";
+    indication.style.display = "none";
     startQuizButton.style.display = "none";    
     timerButton.style.justifyContent = "center";
     timerButton.style.paddingLeft = "0px";
     timer.style.width = "250px";
     timer.style.fontSize = "1.9rem";
-    // backGroundSize.style.height = "39rem";
 
     startTimer();
     afficherQuestion(nbQuestion);
 }
 
 startQuizButton.addEventListener("click", startQuiz);
-
-const optionQuestion = document.getElementById("question");
-
 
 function afficherQuestion(idQuestion) {
     const blockQuestion = questions[idQuestion];
@@ -101,7 +101,7 @@ function afficherQuestion(idQuestion) {
     }*/
 }
 
-const answersButton = document.querySelectorAll(".answer-btn");
+// const answersButton = document.querySelectorAll(".answer-btn");
 
 for(const answerButton of answersButton){
     answerButton.addEventListener("click", (event) => {
@@ -133,11 +133,11 @@ function answerUser(idQuestion, response) {
     if (answer.correct) {
         console.log(`Bonne réponse !`);
         response.style.background = "#6be585";
-        if (currentScore < 10) {
+        if (currentScore < 15) {
         currentScore++;
         }
-        score.innerHTML = "Score " + (currentScore < 10 ? "" : "") + currentScore + "/10";
-                                                /*? correspond au if : correspond au else*/
+        score.innerHTML = "Score " + (currentScore < 11 ? "" : "") + currentScore + "/15";
+                                                    /*? correspond au if : correspond au else*/
     } else {
         response.style.background = "#c94b4b";
         console.log("Mauvaise réponse !");
@@ -187,5 +187,6 @@ nextQuestion.addEventListener("click", () => {
     button2.disabled = false;
     button3.disabled = false;
     button4.disabled = false;
+    clearInterval(intervalId);
     startTimer();
 });

@@ -22,6 +22,12 @@
     </header>
     <h1>| Qui?Zip Tech |</h1>
     <main class="quiz-container" id="container-quiz">
+        <div id="indication">
+            <p>Appuyez sur 'Lancer le Quiz' pour commencer. Si en cliquant, le bouton devient vert, c'est une bonne
+                réponse ; s'il devient rouge, c'est une mauvaise réponse. Après avoir validé, cliquez sur 'Question
+                suivante'. Vous aurez 10 secondes par question ! Si le temps arrive à 0, la question suivante
+                s'affichera.</p>
+        </div>
         <div class="start-quiz" id="display-start-quiz">
             <div class="start-quiz-container">
                 <button id="start-quiz">Lancer le Qui?Zip</button>
@@ -30,8 +36,7 @@
                 <button id="timer">Time Left : 10</button>
             </div>
         </div>
-
-        <h2 id="question">Question ici que l'on verra ensemble </h2>
+        <h2 id="question">Les questions apparaîtront ici au lancement du quiz</h2>
         <div id="question-container">
             <div>
                 <button class="answer-btn" id="op0">Réponse 1</button>
@@ -44,11 +49,11 @@
 
         </div>
         <section>
-            <button id="number-question">Question: 0/10</span></button>
+            <h3 class="displayNone">On triche pour être dans le W3C ^^</h3>
+            <button id="number-question">Question: 0/15</button>
             <button id="next-question">Question suivante</button>
-            <button id="score">Score: 0/10</button>
+            <button id="score">Score: 0/15</button>
         </section>
-        <p>Si vert Bonne réponse, Si rouge Mauvaise réponse Clique sur Question suivante</p>
     </main>
     <footer>
         <ul>
