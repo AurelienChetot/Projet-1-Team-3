@@ -17,6 +17,8 @@ let temps = 10;
 let nbQuestion = 0;
 let currentScore = 0;
 
+nextQuestion.disabled = true;
+
 function time() {
     timer.innerHTML = "Time Left : " + (temps < 10 ? "" : "") + temps;
 
@@ -37,7 +39,7 @@ function time() {
         // button4.disabled = true;
     }
 }
-nextQuestion.disabled = true;
+
 function startTimer() {
     /**
      * setInterval prend 2 arguments 
@@ -54,6 +56,42 @@ nextQuestion.addEventListener("click", function() {
     }
     afficherQuestion(nbQuestion)
     temps = 10;
+    if (nbQuestion === 14) {
+        nextQuestion.innerHTML = "Clique ici pour terminer !";
+    };
+    if (nextQuestion.innerHTML === "Clique ici pour terminer !") {
+        nextQuestion.addEventListener("click", function() {
+            nextQuestion.disabled = true;
+            button1.disabled = true;
+            button2.disabled = true;
+            button3.disabled = true;
+            button4.disabled = true;
+            nextQuestion.innerHTML = "Quiz complété! Bravo ^^";
+            timerButton.style.display = "none";
+            const lastDiv = document.querySelector(".end-message");
+            const congrats = document.createElement("p");
+            lastDiv.appendChild(congrats);
+            lastDiv.style.margin = "30px 0";
+            lastDiv.style.fontSize = "2rem";
+            lastDiv.style.fontStyle = "italic";
+            lastDiv.style.fontWeight
+            if (currentScore === 0) {
+                congrats.innerHTML = "Tu n'as obtenu aucune bonne réponse... tu es une énigme statistique 🧐 En plus de ne pas être très doué.";
+            } else if (currentScore > 0 && currentScore <= 4) {
+                congrats.innerHTML = "Tu as obtenu entre 1 et 4 bonnes réponses... intéressant... tu sais qu'il y a des quêtes pour apprendre des trucs ? 😅";
+            } else if (currentScore > 4 && currentScore <= 8) {
+                congrats.innerHTML = "Tu as obtenu entre 5 et 8 bonnes réponses, c'est pas mal jeune padawan ! 🤓 Mais pose ce sabre laser s'il te plaît.";
+            } else if (currentScore > 8 && currentScore <= 11) {
+                congrats.innerHTML = "Tu as obtenu entre 9 et 11 bonnes réponses, là on discute 😃 Mais prends pas la grosse tête, c'est jamais qu'un pauvre quiz codé avec les pieds...";
+            } else if (currentScore > 11 && currentScore <= 14) {
+                congrats.innerHTML = "Tu as obtenu entre 12 et 14 bonnes réponses, t'es un ouf malade toi 😁 Qu'est-ce que tu fais ce soir ?";
+            } else {
+                congrats.innerHTML = "Tu n'as commis aucune erreur !! Tu es l'Elu Neo 🤩 Maintenant va prendre ta pilule.";
+            }
+            console.log(congrats.innerHTML);
+            
+        })
+    };
 });
 console.log(questions[0].id)
 
@@ -66,6 +104,10 @@ function startQuiz() {
     timer.style.width = "250px";
     timer.style.fontSize = "1.9rem";
     nextQuestion.disabled = false;
+    button1.disabled = false;
+    button2.disabled = false;
+    button3.disabled = false;
+    button4.disabled = false;
 
     startTimer();
     afficherQuestion(nbQuestion);
@@ -193,7 +235,7 @@ nextQuestion.addEventListener("click", () => {
     startTimer();
     
     // Si le nombre de question == 14 (0-14) alors on désactive le bouton de la question suivante
-    if (nbQuestion === 14) {
-        nextQuestion.disabled = true;
-    }
+    // if (nbQuestion === 14) {
+    //     nextQuestion.disabled = true;
+    // }
 });
