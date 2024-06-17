@@ -36,6 +36,7 @@
 
 <p align="center">
   <a href="https://www.linkedin.com/in/laurent-bauduin-868601250/">Laurent Baudin</a><br>
+  <a href="https://www.linkedin.com/in/baptiste-cazenave-9384b3209/">Baptiste Cazenave</a><br>
   <a href="https://www.linkedin.com/in/aur%C3%A9lien-chetot-6861852b2/">Aurélien Chetot</a>
 </p>
 
